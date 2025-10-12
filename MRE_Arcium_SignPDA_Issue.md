@@ -147,7 +147,7 @@ proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
 ## Expected vs Actual Behavior
 
 ### Expected (Based on Nico's Response)
-- Sign PDA Account should be a signer (as confirmed by Nico from Arcium team)
+- Sign PDA Account should be a signer (as confirmed by Nico)
 - CPI call to `queue_computation` should succeed with proper Sign PDA setup
 - Survey response should be processed with encrypted analytics
 
