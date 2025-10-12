@@ -8,7 +8,7 @@
 - **Solana Version**: 1.18.x
 
 ## Issue Description
-The `#[queue_computation_accounts]` macro incorrectly treats the Sign PDA Account as a signer during CPI calls, causing "Cross-program invocation with unauthorized signer" errors.
+Despite following Arcium v0.3.0 documentation exactly, the Sign PDA Account is causing "Cross-program invocation with unauthorized signer" errors during `queue_computation` CPI calls. The implementation matches the official migration guide but still fails.
 
 ## Error Message
 ```
@@ -45,16 +45,44 @@ pub struct SubmitSurveyResponse<'info> {
     pub mxe_account: Box<Account<'info, MXEAccount>>,
     #[account(
         mut,
-        address = derive_computation_pda!(computation_offset)
+        address = derive_mempool_pda!()
     )]
-    pub computation_account: Account<'info, ComputationAccount>,
+    /// CHECK: mempool_account, checked by the arcium program.
+    pub mempool_account: UncheckedAccount<'info>,
     #[account(
         mut,
-        address = derive_survey_pda!(survey_id)
+        address = derive_execpool_pda!()
     )]
-    pub survey_account: Account<'info, SurveyAccount>,
+    /// CHECK: executing_pool, checked by the arcium program.
+    pub executing_pool: UncheckedAccount<'info>,
+    #[account(
+        mut,
+        address = derive_comp_pda!(computation_offset)
+    )]
+    /// CHECK: computation_account, checked by the arcium program.
+    pub computation_account: UncheckedAccount<'info>,
+    #[account(
+        address = derive_comp_def_pda!(COMP_DEF_OFFSET_SURVEY_ANALYTICS)
+    )]
+    pub comp_def_account: Account<'info, ComputationDefinitionAccount>,
+    #[account(
+        mut,
+        address = derive_cluster_pda!(mxe_account)
+    )]
+    pub cluster_account: Account<'info, Cluster>,
+    #[account(
+        mut,
+        address = ARCIUM_FEE_POOL_ACCOUNT_ADDRESS,
+    )]
+    pub pool_account: Account<'info, FeePool>,
+    #[account(
+        address = ARCIUM_CLOCK_ACCOUNT_ADDRESS
+    )]
+    pub clock_account: Account<'info, ClockAccount>,
+    #[account(mut)]
+    pub survey: Account<'info, Survey>,
     pub system_program: Program<'info, System>,
-    pub arcium_program: Program<'info, ArciumProgram>,
+    pub arcium_program: Program<'info, Arcium>,
 }
 ```
 
@@ -62,14 +90,21 @@ pub struct SubmitSurveyResponse<'info> {
 ```rust
 pub fn submit_survey_response(
     ctx: Context<SubmitSurveyResponse>,
-    computation_offset: u64,
-    args: SurveyAnalyticsArgs,
+    analytics_computation_offset: u64,
+    feedback_computation_offset: u64,
+    // ... other parameters
 ) -> Result<()> {
-    // Set bump for Sign PDA Account
+    // Set bump for Sign PDA Account (required by v0.3.0)
     ctx.accounts.sign_pda_account.bump = ctx.bumps.sign_pda_account;
     
-    // Call queue_computation - this is where the error occurs
-    queue_computation(ctx.accounts, computation_offset, args, None, callbacks)?;
+    // Call queue_computation with proper v0.3.0 signature - this is where the error occurs
+    queue_computation(
+        ctx.accounts,
+        analytics_computation_offset,
+        creator_args,
+        None,
+        vec![SurveyAnalyticsCallback::callback_ix(&[])],
+    )?;
     
     Ok(())
 }
@@ -77,18 +112,29 @@ pub fn submit_survey_response(
 
 ### Account Derivations
 ```rust
-// Sign PDA Account derivation
+// Sign PDA Account derivation (matches v0.3.0 documentation)
 pub const SIGN_PDA_SEED: &[u8] = b"sign_pda";
 
-// MXE Account derivation (using our program ID)
-pub fn derive_mxe_pda() -> Pubkey {
-    get_mxe_acc_address(&crate::ID)
-}
+// All derivations use Arcium's built-in macros
+// derive_sign_pda!() - Sign PDA Account
+// derive_mxe_pda!() - MXE Account  
+// derive_mempool_pda!() - Mempool Account
+// derive_execpool_pda!() - Execution Pool Account
+// derive_comp_pda!(offset) - Computation Account
+// derive_comp_def_pda!(offset) - Computation Definition Account
+// derive_cluster_pda!(mxe_account) - Cluster Account
+```
 
-// Computation Account derivation
-pub fn derive_computation_pda(offset: u64) -> Pubkey {
-    get_computation_acc_address(&crate::ID, &offset)
-}
+### Cargo.toml Configuration
+```toml
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+arcium-client = { default-features = false, version = "0.3.0" }
+arcium-macros = "0.3.0"
+arcium-anchor = "0.3.0"
+
+[patch.crates-io]
+proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
 ```
 
 ## Steps to Reproduce
@@ -100,31 +146,35 @@ pub fn derive_computation_pda(offset: u64) -> Pubkey {
 
 ## Expected vs Actual Behavior
 
-### Expected
-- Sign PDA Account should be writable but not a signer
-- CPI call to `queue_computation` should succeed
+### Expected (Based on Team Response)
+- Sign PDA Account should be a signer (as confirmed by Arcium team)
+- CPI call to `queue_computation` should succeed with proper Sign PDA setup
 - Survey response should be processed with encrypted analytics
 
 ### Actual
-- Sign PDA Account is escalated to signer privileges
-- CPI call fails with "unauthorized signer" error
-- Survey response submission is blocked
+- Implementation follows v0.3.0 documentation exactly
+- Sign PDA Account is properly configured as signer
+- CPI call still fails with "unauthorized signer" error
+- Survey response submission is blocked despite correct implementation
 
 ## Key Questions 
 
-1. **Architecture Question**: How can a PDA be a signer in CPI calls when Solana's security model prevents PDAs from being signers?
+1. **Implementation Question**: Our code matches the v0.3.0 migration guide exactly - what could be causing the "unauthorized signer" error?
 
-2. **Implementation Question**: What's the correct pattern for implementing Sign PDA Accounts in the `#[queue_computation_accounts]` macro?
+2. **Architecture Question**: The team confirmed Sign PDA should be a signer, but our implementation still fails - is there a missing step?
 
-3. **Use Case Question**: Is our survey response submission with encrypted analytics a supported use case?
+3. **Use Case Question**: Is our survey response submission with encrypted analytics a supported use case in v0.3.0?
 
-4. **Documentation Question**: Can you provide a working example of the correct implementation?
+4. **Debugging Question**: What additional debugging information would help identify the root cause?
 
 ## Additional Context
 - All account derivations match between frontend and backend
 - MXE account is properly initialized at `4CaE3mJQXmreAd4SeLUtGHFhM56U7wi85f9n3z1suEpH`
 - Code follows Arcium v0.3.0 documentation exactly
 - Issue occurs specifically with the `queue_computation` CPI call
+- Sign PDA Account bump is properly set before CPI call
+- All required accounts are included in the account struct
+- Cargo.toml has correct dependencies and patches
 
 ## Transaction Details
 - **Sign PDA Account**: `2PVQxTpX3pNpeNrUQoTAMBehNmkNx9gvJTs68sqKVxSe`
@@ -135,6 +185,7 @@ This issue prevents all encrypted instruction execution in Arcium v0.3.0, blocki
 
 ## Request
 Please provide guidance on:
-1. The correct implementation pattern for Sign PDA Accounts
-2. Whether this is a known issue with a workaround
-3. Expected timeline for resolution if this is a bug
+1. What could be causing the "unauthorized signer" error despite correct v0.3.0 implementation?
+2. Are there any additional steps or configurations required for Sign PDA Accounts?
+3. Is this a known issue with v0.3.0 that has a workaround?
+4. What debugging steps should we take to identify the root cause?
