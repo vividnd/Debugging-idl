@@ -146,8 +146,8 @@ proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
 
 ## Expected vs Actual Behavior
 
-### Expected (Based on Team Response)
-- Sign PDA Account should be a signer (as confirmed by Arcium team)
+### Expected (Based on Nico's Response)
+- Sign PDA Account should be a signer (as confirmed by Nico from Arcium team)
 - CPI call to `queue_computation` should succeed with proper Sign PDA setup
 - Survey response should be processed with encrypted analytics
 
@@ -161,7 +161,7 @@ proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
 
 1. **Implementation Question**: Our code matches the v0.3.0 migration guide exactly - what could be causing the "unauthorized signer" error?
 
-2. **Architecture Question**: The team confirmed Sign PDA should be a signer, but our implementation still fails - is there a missing step?
+2. **Architecture Question**: Nico confirmed Sign PDA should be a signer, but our implementation still fails - is there a missing step?
 
 3. **Use Case Question**: Is our survey response submission with encrypted analytics a supported use case in v0.3.0?
 
@@ -183,8 +183,8 @@ proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
 ## Impact
 This issue prevents all encrypted instruction execution in Arcium v0.3.0, blocking the core functionality of confidential smart contracts.
 
-## Request
-Please provide guidance on:
+## Request for Nico
+Hi Nico, please provide guidance on:
 1. What could be causing the "unauthorized signer" error despite correct v0.3.0 implementation?
 2. Are there any additional steps or configurations required for Sign PDA Accounts?
 3. Is this a known issue with v0.3.0 that has a workaround?
