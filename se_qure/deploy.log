@@ -1,0 +1,15 @@
+Deploying MXE program...
+Deploying cluster: https://api.devnet.solana.com
+Upgrade authority: /Users/progzzz/.config/solana/id.json
+Deploying program "se_qure"...
+Program path: /Users/progzzz/Desktop/SeQure copy 3/se_qure/target/deploy/se_qure.so...
+Program Id: FeHEg91YY6H7s3PPqUJ2ebkkWPuEc9uHkJxyF65MUd1m
+
+Signature: 2GGGD98nQQXropTxDGX4noPdZb2WCjek4X5CH2P6U68DuVfJjoAbcLhDPBtcYveAjXQ33t2UQNxbzAB8GSS1yRxE
+
+Deploy success
+Initializing MXE account...
+
+thread 'main' panicked at cli/src/lib.rs:1099:9:
+[programs.localnet] not found or is not a table
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

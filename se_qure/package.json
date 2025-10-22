@@ -1,0 +1,33 @@
+{
+  "license": "ISC",
+  "scripts": {
+    "lint:fix": "prettier */*.js \"*/**/*{.js,.ts}\" -w",
+    "lint": "prettier */*.js \"*/**/*{.js,.ts}\" --check",
+    "localnet": "arcium localnet up | cat",
+    "init:compdefs": "ts-node scripts/init_comp_defs.ts | cat",
+    "demo:survey": "ts-node scripts/demo_survey.ts | cat",
+    "demo:quiz": "ts-node scripts/demo_quiz.ts | cat",
+    "devnet:deploy": "anchor build && anchor deploy -p se_qure -c devnet | cat",
+    "devnet:init": "ANCHOR_PROVIDER_URL=https://api.devnet.solana.com ANCHOR_WALLET=~/.config/solana/id.json ts-node scripts/init_comp_defs.ts | cat",
+    "read:mxe": "ts-node scripts/read_mxe.ts | cat",
+    "devnet:read:mxe": "ANCHOR_PROVIDER_URL=https://api.devnet.solana.com ANCHOR_WALLET=~/.config/solana/id.json ts-node scripts/read_mxe.ts | cat",
+    "init-comp-defs": "ts-node scripts/init_comp_defs.ts"
+  },
+  "dependencies": {
+    "@arcium-hq/client": "0.3.0",
+    "@arcium-hq/reader": "0.3.0",
+    "@coral-xyz/anchor": "0.31.1",
+    "@supabase/supabase-js": "^2.76.1"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "prettier": "^2.6.2",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

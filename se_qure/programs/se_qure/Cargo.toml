@@ -1,0 +1,31 @@
+[package]
+name = "se_qure"
+version = "0.1.0"
+description = "Created with Arcium & Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "se_qure"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+# Suppress cfg warnings from Anchor framework
+[profile.dev]
+[profile.release]
+overflow-checks = true
+
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+anchor-spl = "0.31.1"
+zeroize = "1.5.7"
+arcium-client = { default-features = false, version = "0.3.0" }
+arcium-macros = "0.3.0"
+arcium-anchor = "0.3.0"
+

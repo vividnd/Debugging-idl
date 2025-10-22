@@ -1,0 +1,397 @@
+Checking if encrypted instructions are up to date.
+warning: profiles for the non root package will be ignored, specify profiles at the workspace root:
+package:   /Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure/Cargo.toml
+workspace: /Users/progzzz/Desktop/SeQure copy 3/se_qure/Cargo.toml
+     Removed 1 directory
+warning: profiles for the non root package will be ignored, specify profiles at the workspace root:
+package:   /Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure/Cargo.toml
+workspace: /Users/progzzz/Desktop/SeQure copy 3/se_qure/Cargo.toml
+   Compiling serde v1.0.228
+   Compiling solana-sanitize v2.2.1
+   Compiling curve25519-dalek v4.1.3
+   Compiling ahash v0.8.12
+   Compiling borsh-schema-derive-internal v0.10.4
+   Compiling five8_const v0.1.4
+   Compiling borsh v1.5.7
+   Compiling hashbrown v0.13.2
+   Compiling solana-decode-error v2.3.0
+   Compiling bs58 v0.5.1
+   Compiling itoa v1.0.15
+   Compiling memchr v2.7.6
+   Compiling ryu v1.0.20
+   Compiling digest v0.10.7
+   Compiling serde_json v1.0.145
+   Compiling ppv-lite86 v0.2.21
+   Compiling sha2 v0.10.9
+   Compiling solana-sdk-macro v2.2.1
+   Compiling anyhow v1.0.100
+   Compiling crunchy v0.2.4
+   Compiling unicode-segmentation v1.12.0
+   Compiling solana-msg v2.2.1
+   Compiling thiserror v1.0.69
+   Compiling lazy_static v1.5.0
+   Compiling heck v0.3.3
+   Compiling keccak v0.1.5
+   Compiling thiserror-impl v1.0.69
+   Compiling toml v0.5.11
+   Compiling bincode v1.3.3
+   Compiling crossbeam-utils v0.8.21
+   Compiling proc-macro-crate v0.1.5
+   Compiling num-integer v0.1.46
+   Compiling borsh-derive v0.10.4
+   Compiling solana-hash v2.3.0
+   Compiling borsh v0.10.4
+   Compiling num-bigint v0.3.3
+   Compiling solana-program-memory v2.3.1
+   Compiling thiserror v2.0.17
+   Compiling digest v0.9.0
+   Compiling thiserror-impl v2.0.17
+   Compiling getrandom v0.1.16
+   Compiling shlex v1.3.0
+   Compiling radium v0.7.0
+   Compiling find-msvc-tools v0.1.3
+   Compiling cc v1.2.40
+   Compiling crossbeam-epoch v0.9.18
+   Compiling libsecp256k1-core v0.2.2
+   Compiling solana-sha256-hasher v2.3.0
+   Compiling signature v2.2.0
+   Compiling arrayref v0.3.9
+   Compiling rayon-core v1.13.0
+   Compiling tap v1.0.1
+   Compiling wyz v0.5.1
+   Compiling ed25519 v2.2.3
+   Compiling crossbeam-deque v0.8.6
+   Compiling blake3 v1.8.2
+   Compiling rand_chacha v0.3.1
+   Compiling solana-pubkey v2.4.0
+   Compiling solana-instruction v2.3.0
+   Compiling solana-sdk-ids v2.2.1
+   Compiling solana-sysvar-id v2.2.1
+   Compiling solana-program-error v2.2.2
+   Compiling solana-system-interface v1.0.0
+   Compiling solana-clock v2.2.2
+   Compiling solana-account-info v2.3.0
+   Compiling inout v0.1.4
+   Compiling feature-probe v0.1.1
+   Compiling funty v2.0.0
+   Compiling paste v1.0.15 (https://github.com/dtolnay/paste.git?tag=1.0.15#a2c7e278)
+   Compiling addchain-arcium-fork v0.2.1
+   Compiling ff-derive-arcium-fork v0.13.2
+   Compiling bitvec v1.0.1
+   Compiling bv v0.11.1
+   Compiling anchor-syn v0.31.1
+   Compiling cipher v0.4.4
+   Compiling rand v0.8.5
+   Compiling rand_core v0.5.1
+   Compiling libsecp256k1-gen-genmult v0.2.1
+   Compiling libsecp256k1-gen-ecmult v0.2.1
+   Compiling sha3 v0.10.8
+   Compiling colored v2.2.0
+   Compiling byteorder v1.5.0
+   Compiling either v1.15.0
+   Compiling zeroize v1.8.2
+   Compiling camino v1.2.1
+   Compiling constant_time_eq v0.3.1
+   Compiling rustc-hash v2.1.1
+   Compiling arrayvec v0.7.6
+   Compiling log v0.4.28
+   Compiling arcis-internal-expr-macro v0.3.0
+   Compiling solana-fee-calculator v2.2.1
+   Compiling rayon v1.11.0
+   Compiling ff-arcium-fork v0.13.2
+   Compiling num-bigint v0.4.6
+   Compiling arcis-diagnostics v0.3.0
+   Compiling libsecp256k1 v0.6.0
+   Compiling rand_chacha v0.2.2
+   Compiling aes v0.8.4
+   Compiling solana-slot-hashes v2.2.1
+   Compiling solana-rent v2.2.1
+   Compiling solana-serialize-utils v2.2.1
+   Compiling solana-short-vec v2.2.1
+   Compiling rand_seeder v0.3.0
+   Compiling serde_bytes v0.11.19
+   Compiling block-buffer v0.9.0
+   Compiling opaque-debug v0.3.1
+   Compiling sha2 v0.9.9
+   Compiling rand v0.7.3
+   Compiling ed25519-dalek v2.2.0
+   Compiling solana-cpi v2.2.1
+   Compiling solana-transaction-error v2.2.1
+   Compiling solana-bincode v2.2.1
+   Compiling arcis-interface v0.3.0
+   Compiling cargo-platform v0.1.9
+   Compiling memoffset v0.9.1
+   Compiling base64 v0.12.3
+   Compiling bitflags v2.9.4
+   Compiling arcis v0.3.0
+   Compiling solana-instructions-sysvar v2.2.2
+   Compiling solana-message v2.4.0
+   Compiling cargo_metadata v0.19.2
+   Compiling solana-stake-interface v1.2.1
+   Compiling solana-address-lookup-table-interface v2.2.2
+   Compiling solana-nonce v2.2.1
+   Compiling solana-account v2.2.1
+   Compiling solana-keccak-hasher v2.2.1
+   Compiling solana-slot-history v2.2.1
+   Compiling solana-program-entrypoint v2.3.0
+   Compiling solana-last-restart-slot v2.2.1
+   Compiling solana-epoch-rewards v2.2.1
+   Compiling solana-epoch-schedule v2.2.1
+   Compiling anchor-lang-idl-spec v0.1.0
+   Compiling solana-serde-varint v2.2.2
+   Compiling num-derive v0.4.2
+   Compiling base64 v0.22.1
+   Compiling solana-example-mocks v2.2.1
+   Compiling solana-feature-gate-interface v2.2.2
+   Compiling solana-sysvar v2.3.0
+   Compiling solana-blake3-hasher v2.2.1
+   Compiling solana-loader-v3-interface v5.0.0
+   Compiling anchor-lang-idl v0.1.2
+   Compiling solana-loader-v2-interface v2.2.1
+   Compiling solana-vote-interface v2.2.6
+   Compiling solana-loader-v4-interface v2.2.1
+   Compiling solana-big-mod-exp v2.2.1
+   Compiling solana-program-pack v2.2.1
+   Compiling solana-stable-layout v2.2.1
+   Compiling solana-borsh v2.2.1
+   Compiling indexmap v2.11.4
+   Compiling solana-program-option v2.2.1
+   Compiling solana-native-token v2.3.0
+   Compiling anchor-derive-serde v0.31.1
+   Compiling anchor-attribute-constant v0.31.1
+   Compiling anchor-attribute-error v0.31.1
+   Compiling anchor-derive-accounts v0.31.1
+   Compiling anchor-attribute-event v0.31.1
+   Compiling anchor-attribute-access-control v0.31.1
+   Compiling anchor-attribute-account v0.31.1
+   Compiling anchor-derive-space v0.31.1
+   Compiling base64 v0.21.7
+   Compiling anchor-attribute-program v0.31.1
+   Compiling solana-secp256k1-recover v2.2.1
+   Compiling solana-program v2.3.0
+   Compiling anchor-lang v0.31.1
+   Compiling arcis-interpreter v0.3.0
+   Compiling arcis-interpreter-proc-macros v0.3.0
+   Compiling arcis-imports v0.3.0
+   Compiling encrypted-ixs v0.1.0 (/Users/progzzz/Desktop/SeQure copy 3/se_qure/encrypted-ixs)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 31.16s
+Built encrypted instruction at build/analytics_computation.arcis
+Built encrypted instruction at build/quiz_threshold_check.arcis
+Built encrypted instruction at build/survey_analytics.arcis
+Warning: arcis compiler detected that the value of input `class_stats.data.data[0]` is unused or could be optimized out.
+Built encrypted instruction at build/quiz_evaluation.arcis
+warning: profiles for the non root package will be ignored, specify profiles at the workspace root:
+package:   /Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure/Cargo.toml
+workspace: /Users/progzzz/Desktop/SeQure copy 3/se_qure/Cargo.toml
+Error: Function _ZN109_$LT$arcium_client..idl..arcium..utils..Account$u20$as$u20$core..convert..TryFrom$LT$$RF$$u5b$u8$u5d$$GT$$GT$8try_from17h79ac2d2eb022c331E Stack offset of 721512 exceeded max offset of 4096 by 717416 bytes, please minimize large stack variables. Estimated function frame size: 721528 bytes. Exceeding the maximum stack offset may cause undefined behavior during execution.
+
+   Compiling se_qure v0.1.0 (/Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure)
+warning: use of deprecated method `anchor_lang::prelude::AccountInfo::<'a>::realloc`: Use AccountInfo::resize() instead
+   --> programs/se_qure/src/lib.rs:201:1
+    |
+201 | #[arcium_program]
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+    = note: this warning originates in the attribute macro `program` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unused variable: `instructor_computation_offset`
+  --> programs/se_qure/src/legacy_functions.rs:13:5
+   |
+13 |     instructor_computation_offset: u64,  // For instructor analytics
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_instructor_computation_offset`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `creator_computation_offset`
+  --> programs/se_qure/src/legacy_functions.rs:14:5
+   |
+14 |     creator_computation_offset: u64,     // For quiz creator analytics
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_creator_computation_offset`
+
+warning: unused variable: `instructor_pub_key`
+  --> programs/se_qure/src/legacy_functions.rs:24:5
+   |
+24 |     instructor_pub_key: [u8; 32],    // Instructor's public key
+   |     ^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_instructor_pub_key`
+
+warning: unused variable: `instructor_nonce`
+  --> programs/se_qure/src/legacy_functions.rs:25:5
+   |
+25 |     instructor_nonce: u128,          // Instructor's nonce
+   |     ^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_instructor_nonce`
+
+warning: unused variable: `creator_pub_key`
+  --> programs/se_qure/src/legacy_functions.rs:26:5
+   |
+26 |     creator_pub_key: [u8; 32],       // Creator's public key
+   |     ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_creator_pub_key`
+
+warning: unused variable: `creator_nonce`
+  --> programs/se_qure/src/legacy_functions.rs:27:5
+   |
+27 |     creator_nonce: u128,             // Creator's nonce
+   |     ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_creator_nonce`
+
+warning: unused variable: `clock`
+   --> programs/se_qure/src/legacy_functions.rs:103:9
+    |
+103 |     let clock = Clock::get()?;
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_clock`
+
+warning: unused variable: `quiz`
+  --> programs/se_qure/src/legacy_functions.rs:82:5
+   |
+82 |     quiz: Pubkey,
+   |     ^^^^ help: if this is intentional, prefix it with an underscore: `_quiz`
+
+warning: unused variable: `access_controller_computation_offset`
+  --> programs/se_qure/src/legacy_functions.rs:84:5
+   |
+84 |     access_controller_computation_offset: u64, // For access controller result
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_access_controller_computation_offset`
+
+warning: unused variable: `auditor_computation_offset`
+  --> programs/se_qure/src/legacy_functions.rs:85:5
+   |
+85 |     auditor_computation_offset: u64,     // For auditor result
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_auditor_computation_offset`
+
+warning: unused variable: `ciphertext_passing_requirement`
+   --> programs/se_qure/src/lib.rs:629:9
+    |
+629 |         ciphertext_passing_requirement: [u8; 32],   // Encrypted passing requirement
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ciphertext_passing_requirement`
+
+warning: unused variable: `ciphertext_passing_requirement`
+   --> programs/se_qure/src/lib.rs:719:9
+    |
+719 |         ciphertext_passing_requirement: [u8; 32],   // Encrypted passing requirement
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ciphertext_passing_requirement`
+
+warning: unused variable: `ciphertext_passing_requirement`
+   --> programs/se_qure/src/lib.rs:792:9
+    |
+792 |         ciphertext_passing_requirement: [u8; 32],   // Encrypted passing requirement
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_ciphertext_passing_requirement`
+
+warning: unused variable: `threshold`
+   --> programs/se_qure/src/lib.rs:944:9
+    |
+944 |         threshold: u8,  // Plaintext threshold (public parameter)
+    |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_threshold`
+
+warning: function `submit_quiz_response_old` is never used
+  --> programs/se_qure/src/legacy_functions.rs:10:8
+   |
+10 | pub fn submit_quiz_response_old(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: function `verify_quiz_completion_legacy` is never used
+  --> programs/se_qure/src/legacy_functions.rs:80:8
+   |
+80 | pub fn verify_quiz_completion_legacy(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global22submit_survey_feedback17h555d89a0a8f8e012E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: Function _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E Stack offset of 4288 exceeded max offset of 4096 by 192 bytes, please minimize large stack variables. Estimated function frame size: 4640 bytes. Exceeding the maximum stack offset may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+Error: A function call in method _ZN7se_qure9__private8__global30submit_special_survey_response17hbad23a4f69c29d14E overwrites values in the frame. Please, decrease stack usage or remove parameters from the call.The function call may cause undefined behavior during execution.
+
+warning: `se_qure` (lib) generated 17 warnings
+    Finished `release` profile [optimized] target(s) in 7.60s
+warning: profiles for the non root package will be ignored, specify profiles at the workspace root:
+package:   /Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure/Cargo.toml
+workspace: /Users/progzzz/Desktop/SeQure copy 3/se_qure/Cargo.toml
+   Compiling se_qure v0.1.0 (/Users/progzzz/Desktop/SeQure copy 3/se_qure/programs/se_qure)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.52s
+     Running unittests src/lib.rs (/Users/progzzz/Desktop/SeQure copy 3/se_qure/target/debug/deps/se_qure-b65e263df8d9a7cb)

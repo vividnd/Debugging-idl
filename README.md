@@ -132,3 +132,4 @@ This repository also contains evidence of related Arcium issues:
 2. Identify why `arcium build` stopped generating complete account types
 3. Provide solution for IDL enrichment or fix Arcium build process
 4. Test with BorshCoder type registration
+

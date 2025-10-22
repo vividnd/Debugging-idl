@@ -1,0 +1,281 @@
+/**
+ * Initialize V2 Computation Definitions Script
+ * 
+ * This script initializes the v2 computation definitions that the program expects:
+ * - survey_analytics_v2
+ * - quiz_evaluation_v2  
+ * - analytics_computation_v2
+ * - quiz_threshold_check_v2
+ * 
+ * Usage:
+ * ANCHOR_PROVIDER_URL=https://api.devnet.solana.com ANCHOR_WALLET=~/.config/solana/id.json npx ts-node init_v2_comp_defs.ts
+ */
+
+import * as anchor from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
+import { PublicKey, Connection } from "@solana/web3.js";
+import { SeQure } from "./target/types/se_qure";
+import * as fs from "fs";
+import * as os from "os";
+import {
+  getMXEAccAddress,
+  getCompDefAccAddress,
+  getCompDefAccOffset,
+} from "@arcium-hq/client";
+
+// Configuration
+const ARCIUM_PROGRAM_ID = new PublicKey("BKck65TgoKRokMjQM3datB9oRwJ8rAj2jxPXvHXUvcL6");
+const RPC_ENDPOINT = "https://api.devnet.solana.com";
+const WALLET_PATH = `${os.homedir()}/.config/solana/id.json`;
+
+// V2 computation definition names
+const V2_COMP_DEF_NAMES = [
+  "survey_analytics_v2",
+  "quiz_evaluation_v2", 
+  "analytics_computation_v2",
+  "quiz_threshold_check_v2"
+] as const;
+
+type V2CompDefName = typeof V2_COMP_DEF_NAMES[number];
+
+// Helper function to read keypair from file
+function readKeypair(path: string): anchor.web3.Keypair {
+  const file = fs.readFileSync(path);
+  return anchor.web3.Keypair.fromSecretKey(
+    new Uint8Array(JSON.parse(file.toString()))
+  );
+}
+
+// Helper function to check if account exists
+async function accountExists(connection: Connection, address: PublicKey): Promise<boolean> {
+  try {
+    const accountInfo = await connection.getAccountInfo(address);
+    return accountInfo !== null;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Helper function to get computation definition PDA
+function getCompDefPDA(programId: PublicKey, compDefName: V2CompDefName): PublicKey {
+  const offset = getCompDefAccOffset(compDefName);
+  return getCompDefAccAddress(programId, Buffer.from(offset).readUInt32LE());
+}
+
+// Helper function to initialize a single v2 computation definition
+async function initializeV2CompDef(
+  program: Program<SeQure>,
+  payer: anchor.web3.Keypair,
+  compDefName: V2CompDefName
+): Promise<boolean> {
+  try {
+    console.log(`\n🔄 Initializing ${compDefName} computation definition...`);
+    
+    // Get account addresses
+    const mxeAccount = getMXEAccAddress(program.programId);
+    const compDefAccount = getCompDefPDA(program.programId, compDefName);
+    
+    console.log(`   MXE Account: ${mxeAccount.toBase58()}`);
+    console.log(`   Comp Def Account: ${compDefAccount.toBase58()}`);
+    
+    // Check if already initialized
+    const connection = program.provider.connection;
+    const alreadyExists = await accountExists(connection, compDefAccount);
+    
+    if (alreadyExists) {
+      console.log(`   ✅ ${compDefName} computation definition already initialized`);
+      return true;
+    }
+    
+    // Prepare accounts object
+    const accounts = {
+      payer: payer.publicKey,
+      mxeAccount,
+      compDefAccount,
+      arciumProgram: ARCIUM_PROGRAM_ID,
+      systemProgram: anchor.web3.SystemProgram.programId,
+    };
+    
+    // Call the appropriate initialization function
+    let txSignature: string;
+    
+    // Get recent blockhash to ensure transaction is valid
+    const { blockhash } = await connection.getLatestBlockhash('confirmed');
+    
+    switch (compDefName) {
+      case "survey_analytics_v2":
+        txSignature = await program.methods
+          .initSurveyAnalyticsCompDef()
+          .accounts(accounts)
+          .signers([payer])
+          .rpc({ 
+            skipPreflight: true, 
+            commitment: "confirmed",
+            preflightCommitment: "confirmed"
+          });
+        break;
+        
+      case "quiz_evaluation_v2":
+        txSignature = await program.methods
+          .initQuizEvaluationCompDef()
+          .accounts(accounts)
+          .signers([payer])
+          .rpc({ 
+            skipPreflight: true, 
+            commitment: "confirmed",
+            preflightCommitment: "confirmed"
+          });
+        break;
+        
+      case "analytics_computation_v2":
+        txSignature = await program.methods
+          .initAnalyticsComputationCompDef()
+          .accounts(accounts)
+          .signers([payer])
+          .rpc({ 
+            skipPreflight: true, 
+            commitment: "confirmed",
+            preflightCommitment: "confirmed"
+          });
+        break;
+        
+      case "quiz_threshold_check_v2":
+        txSignature = await program.methods
+          .initQuizThresholdCheckCompDef()
+          .accounts(accounts)
+          .signers([payer])
+          .rpc({ 
+            skipPreflight: true, 
+            commitment: "confirmed",
+            preflightCommitment: "confirmed"
+          });
+        break;
+        
+      default:
+        throw new Error(`Unknown v2 computation definition: ${compDefName}`);
+    }
+    
+    console.log(`   ✅ ${compDefName} computation definition initialized successfully!`);
+    console.log(`   📝 Transaction signature: ${txSignature}`);
+    
+    return true;
+    
+  } catch (error) {
+    console.error(`   ❌ Failed to initialize ${compDefName}:`, error.message);
+    if (error.logs) {
+      console.error(`   📋 Transaction logs:`, error.logs);
+    }
+    console.error(`   🔍 Full error:`, error);
+    return false;
+  }
+}
+
+// Main initialization function
+async function initializeAllV2CompDefs(): Promise<void> {
+  console.log("🚀 SeQure V2 Computation Definitions Initialization");
+  console.log("=" .repeat(60));
+  
+  try {
+    // Setup connection and program
+    console.log("\n📡 Setting up connection...");
+    const connection = new Connection(RPC_ENDPOINT, "confirmed");
+    const version = await connection.getVersion();
+    console.log(`   ✅ Connected to Solana ${version['solana-core']} on devnet`);
+    
+    // Load wallet
+    console.log("\n🔑 Loading wallet...");
+    const payer = readKeypair(WALLET_PATH);
+    console.log(`   ✅ Wallet loaded: ${payer.publicKey.toBase58()}`);
+    
+    // Check wallet balance
+    const balance = await connection.getBalance(payer.publicKey);
+    const solBalance = balance / anchor.web3.LAMPORTS_PER_SOL;
+    console.log(`   💰 Wallet balance: ${solBalance.toFixed(4)} SOL`);
+    
+    if (solBalance < 0.1) {
+      console.log("   ⚠️  Warning: Low SOL balance. You may need more SOL for transaction fees.");
+    }
+    
+    // Setup Anchor provider and program
+    console.log("\n🔧 Setting up Anchor program...");
+    const provider = new anchor.AnchorProvider(
+      connection,
+      new anchor.Wallet(payer),
+      { commitment: "confirmed" }
+    );
+    anchor.setProvider(provider);
+    
+    const program = anchor.workspace.SeQure as Program<SeQure>;
+    console.log(`   ✅ Program loaded: ${program.programId.toBase58()}`);
+    
+    // Check MXE account
+    console.log("\n🔍 Checking MXE account...");
+    const mxeAccount = getMXEAccAddress(program.programId);
+    const mxeExists = await accountExists(connection, mxeAccount);
+    
+    if (!mxeExists) {
+      console.log(`   ❌ MXE account not found at ${mxeAccount.toBase58()}`);
+      console.log(`   🔧 MXE needs to be initialized before computation definitions can be initialized.`);
+      throw new Error(`MXE account not initialized. Please initialize MXE first.`);
+    }
+    console.log(`   ✅ MXE account exists: ${mxeAccount.toBase58()}`);
+    
+    // Initialize all v2 computation definitions
+    console.log("\n🎯 Initializing v2 computation definitions...");
+    const results: { [key in V2CompDefName]: boolean } = {
+      survey_analytics_v2: false,
+      quiz_evaluation_v2: false,
+      analytics_computation_v2: false,
+      quiz_threshold_check_v2: false,
+    };
+    
+    for (const compDefName of V2_COMP_DEF_NAMES) {
+      results[compDefName] = await initializeV2CompDef(program, payer, compDefName);
+    }
+    
+    // Summary
+    console.log("\n📊 V2 Initialization Summary");
+    console.log("=" .repeat(40));
+    
+    let successCount = 0;
+    for (const [name, success] of Object.entries(results)) {
+      const status = success ? "✅ SUCCESS" : "❌ FAILED";
+      console.log(`   ${name}: ${status}`);
+      if (success) successCount++;
+    }
+    
+    console.log(`\n🎉 V2 initialization complete! ${successCount}/${V2_COMP_DEF_NAMES.length} computation definitions ready.`);
+    
+    if (successCount === V2_COMP_DEF_NAMES.length) {
+      console.log("\n🚀 All v2 computation definitions are now ready for use!");
+      console.log("   Your quiz grading should now work properly.");
+    } else {
+      console.log("\n⚠️  Some v2 computation definitions failed to initialize.");
+      console.log("   Please check the error messages above and retry if needed.");
+    }
+    
+  } catch (error) {
+    console.error("\n❌ V2 initialization failed:", error.message);
+    console.error("\n🔧 Troubleshooting tips:");
+    console.error("   1. Ensure your program is deployed to devnet");
+    console.error("   2. Check that your wallet has sufficient SOL balance");
+    console.error("   3. Verify the MXE account is initialized on devnet");
+    console.error("   4. Make sure the RPC endpoint is accessible");
+    process.exit(1);
+  }
+}
+
+// Run the initialization
+if (require.main === module) {
+  initializeAllV2CompDefs()
+    .then(() => {
+      console.log("\n✅ V2 script completed successfully!");
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error("\n❌ V2 script failed:", error);
+      process.exit(1);
+    });
+}
+
+export { initializeAllV2CompDefs };

@@ -1,0 +1,43 @@
+[workspace]
+members = [
+    "programs/se_qure",
+    "encrypted-ixs",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+anchor-spl = "0.31.1"
+arcium-client = { default-features = false, version = "0.3.0" }
+arcium-anchor = "0.3.0"
+arcium-macros = "0.3.0"
+borsh = "1.4.0"
+borsh-derive = "0.10.4"
+num_enum = "0.6.0"
+num_enum_derive = "0.6.0"
+serde = "1.0.228"
+serde_json = "1.0.145"
+thiserror = "1.0.69"
+base64 = "0.22.1"
+sha2 = "0.10.9"
+subtle = "2.6.1"
+syn = "2.0.106"
+toml_edit = "0.22.27"
+toml_datetime = "0.6.11"
+proc-macro-crate = "0.1.5"
+toml_parser = "1.0.2"
+# ✅ FIXED: Security-focused dependencies
+zeroize = "1.8.1"
+secrecy = "0.10.3"
+
+[profile.release]
+overflow-checks = true
+
+[patch.crates-io]
+proc-macro2 = { git = "https://github.com/arcium-hq/proc-macro2.git" }
+# ✅ FIXED: Security patch for unmaintained paste crate
+paste = { git = "https://github.com/dtolnay/paste.git", tag = "1.0.15" }
